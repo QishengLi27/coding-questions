@@ -9,7 +9,7 @@
 # e.g.
 # Input
 # [
-# [‘O’, ‘O’, ‘O’, ‘O’],
+# [‘S’, ‘O’, ‘O’, ‘O’],
 # [‘D’, ‘O’, ‘D’, ‘O’],
 # [‘O’, ‘O’, ‘O’, ‘O’],
 # [‘X’, ‘D’, ‘D’, ‘O’],
@@ -18,4 +18,38 @@
 # Output from aonecode.com
 # Route is (0, 0), (0, 1), (1, 1), (2, 1), (2, 0), (3, 0) The minimum route takes 5 steps.
 
-# https://www.lintcode.com/problem/the-maze-ii/description
+from collections import deque
+
+def shortestDistance(matrix, start_x, start_y):
+	queue = deque()
+	queue.append((start_x, start_y, 0))
+	directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+	while queue:
+	 	x, y, distance = queue.popleft()
+	  	if matrix[x][y] == 'X':
+	      	return distance
+	  	for dirs in directions:
+	      	next_x = x + dirs[0]
+	    	next_y = y + dirs[1]
+	    	if 0 <= next_x < len(matrix) and 0 <= next_y < len(matrix[0]) and matrix[next_x][next_y] != 'D':
+	         	queue.append((next_x, next_y, distance + 1))
+	return sys.maxsize
+
+
+# For treasure island ii, the input becomes:
+# [['S', 'O', 'O', 'S', 'S'],
+#  ['D', 'O', 'D', 'O', 'D'],
+#  ['O', 'O', 'O', 'O', 'X'],
+#  ['X', 'D', 'D', 'O', 'O'],
+#  ['X', 'D', 'D', 'D', 'O']]
+
+#  Start from any S, find the shortest X
+
+def treasure_ii(matrix):
+    res = sys.maxsize
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if matrix[i][j] == 'S':
+                temp = bfs(matrix, i, j)
+                res = min(res, temp)
+    return res
