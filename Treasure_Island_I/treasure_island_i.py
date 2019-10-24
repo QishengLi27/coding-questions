@@ -24,7 +24,7 @@ def shortestDistance(matrix, start_x, start_y):
 	queue = deque()
 	queue.append((start_x, start_y, 0))
 	directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-    distance_map = {(0, 0): 0}
+    distance_map = {(start_x, start_y): 0}
     while queue:
         x, y, distance = queue.popleft()
         
