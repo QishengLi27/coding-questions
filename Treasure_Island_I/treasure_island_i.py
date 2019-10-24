@@ -24,16 +24,24 @@ def shortestDistance(matrix, start_x, start_y):
 	queue = deque()
 	queue.append((start_x, start_y, 0))
 	directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-	while queue:
-	 	x, y, distance = queue.popleft()
-	  	if matrix[x][y] == 'X':
-	      	return distance
-	  	for dirs in directions:
-	      	next_x = x + dirs[0]
-	    	next_y = y + dirs[1]
-	    	if 0 <= next_x < len(matrix) and 0 <= next_y < len(matrix[0]) and matrix[next_x][next_y] != 'D':
-	         	queue.append((next_x, next_y, distance + 1))
-	return sys.maxsize
+    distance_map = {(0, 0): 0}
+    while queue:
+        x, y, distance = queue.popleft()
+        
+        if targetMap[x][y] == 2:
+            return distance_map[x, y]
+            
+        for dirs in directions:
+            next_x = x + dirs[0]
+            next_y = y + dirs[1]
+            
+            if (next_x, next_y) in distance_map:
+                continue
+            
+            if 0 <= next_x < len(targetMap) and 0 <= next_y < len(targetMap[0]) and targetMap[next_x][next_y] != 1:
+                queue.append((next_x, next_y, distance + 1))
+                distance_map[next_x, next_y] = distance + 1
+    return -1
 
 
 # For treasure island ii, the input becomes:
