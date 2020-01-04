@@ -5,7 +5,7 @@
 # Output: 4
 
 # using XOR, a list of numns become a1^a2^a1^a3^a1, which is (a1^a1)^(a2^a2)^a3
-def singleNumber(self, nums: List[int]) -> int:
+def singleNumber(nums: List[int]) -> int:
 	result = 0
 		for num in nums:
 			result ^=num
