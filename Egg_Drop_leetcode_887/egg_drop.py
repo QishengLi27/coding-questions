@@ -22,6 +22,12 @@ class Solution:
         
         result = sys.maxsize
         
+        # Go through each floor, store the min step in dict.
+        # The idea is, go through each floor i, and get the worst(max) number of steps that could happen so we
+        # can use to compare to the result.
+        # case 1: if curent floor breaks, move down. dp(K - 1, floor - 1, map_dict)
+        # case 2: if current floor not break, move up. dp(K, N - i, map_dict)
+
         # for i in range(1, N+1):
         #     result = min(
         #         result, 
@@ -31,6 +37,9 @@ class Solution:
         #         ) + 1
         #     )
         
+
+        # Previous approach is not fast enough since it needs to go through all floors
+        # Use binary seach instead
         left, right = 1, N + 1
         
         while left <= right:
