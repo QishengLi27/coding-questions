@@ -9,7 +9,7 @@
 #		  self.right = None
 
 def insertNode(root, node):
-        return insert(root, node)
+    return insert(root, node)
     
 def insert(root, node):
     if root is None:

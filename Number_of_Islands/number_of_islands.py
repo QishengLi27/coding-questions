@@ -21,24 +21,24 @@
 
 # bfs
 from collections import deque
-def numIslands(grid):
-        if not grid or not grid[0]:
-            return 0
-        
-        rows = len(grid)
-        cols = len(grid[0])
-        
-        visited_points = set()
-        result = 0
-        
-        for i in range(rows):
-            for j in range(cols):
-                point_value = grid[i][j]
-                if point_value and (i, j) not in visited_points:
-                    bfs(grid, i, j, visited_points)
-                    result += 1
-        
-        return result
+def numIslands_bfs(grid):
+    if not grid or not grid[0]:
+        return 0
+    
+    rows = len(grid)
+    cols = len(grid[0])
+    
+    visited_points = set()
+    result = 0
+    
+    for i in range(rows):
+        for j in range(cols):
+            point_value = grid[i][j]
+            if point_value and (i, j) not in visited_points:
+                bfs(grid, i, j, visited_points)
+                result += 1
+    
+    return result
     
 def bfs(grid, x, y, visited_points):
     queue = deque([(x, y)])
@@ -61,24 +61,24 @@ def bfs(grid, x, y, visited_points):
 
 
 # dfs
-def numIslands(grid):
-        if not grid or not grid[0]:
-            return 0
-        
-        rows = len(grid)
-        cols = len(grid[0])
-        
-        visited_points = set()
-        result = 0
-        
-        for i in range(rows):
-            for j in range(cols):
-                point_value = grid[i][j]
-                if point_value and (i, j) not in visited_points:
-                    dfs(grid, i, j, visited_points)
-                    result += 1
-        
-        return result
+def numIslands_dfs(grid):
+    if not grid or not grid[0]:
+        return 0
+    
+    rows = len(grid)
+    cols = len(grid[0])
+    
+    visited_points = set()
+    result = 0
+    
+    for i in range(rows):
+        for j in range(cols):
+            point_value = grid[i][j]
+            if point_value and (i, j) not in visited_points:
+                dfs(grid, i, j, visited_points)
+                result += 1
+    
+    return result
     
 def dfs(self, grid, x, y, visited_points):
     visited_points.add((x, y))
